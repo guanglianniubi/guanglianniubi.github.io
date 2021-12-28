@@ -4,15 +4,51 @@
   <meta charset="utf-8">
   
   
-  <title>Hexo</title>
+  <title>java代码审计复现之ofcms | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="本文记录了在网上文章学习到的java代码审计复现过程 环境配置 clone项目到本地 maven配置 重新加载项目，导入依赖包 下载tomcat 配置tomcat 部署好war包，提供访问路径 配置msql 把ofcms\doc\sql下的sql文件导入到mysql数据库   然后重新启动tomcat,访问本地localhost:8080可以看到搭建成功  漏洞发现模板注入审计 在pom.xml文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java代码审计复现之ofcms">
+<meta property="og:url" content="http://example.com/2021/12/28/java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%A4%8D%E7%8E%B0%E4%B9%8Bofcms/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文记录了在网上文章学习到的java代码审计复现过程 环境配置 clone项目到本地 maven配置 重新加载项目，导入依赖包 下载tomcat 配置tomcat 部署好war包，提供访问路径 配置msql 把ofcms\doc\sql下的sql文件导入到mysql数据库   然后重新启动tomcat,访问本地localhost:8080可以看到搭建成功  漏洞发现模板注入审计 在pom.xml文">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/rhX6mJ2vtUOlR71.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/SjCht6E7T1UokWe.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/gNdSvBcVrelqtpx.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/rnLuHGVU8eNfcsa.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/kLEe1cig2KhQVT7.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/DrhkIEZPF27R9Mn.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/qpthHWCDGfiwaPF.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/dhT2lO764VbNCUZ.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/TRbKNrOD4lugJ8U.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/3Nf1ImzOPxeR5wd.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/TjkzeqZF7nU4YlM.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/lsvbfgMwtASVZGJ.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/DFSMWxXmP8lGKtO.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/KleJTjE68RgmHtZ.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/DnWc5sKjieXPMgU.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/dGUQX49iYvf6kR3.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/5HZUEblfxRDMh1v.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/yjcWKTC8QZHhiGd.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/8zvFknQq9jJ7Sxr.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/DnWc5sKjieXPMgU.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/dGUQX49iYvf6kR3.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/nap6OAwrCIBJfcL.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/qFzHhVW3InQxA1d.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/HkJiXTs37dKvOWz.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/IpTWbYjHFl2UVkR.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/24yP1NdZf8tRK5e.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/IGSijLEHhWeRN6t.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/JmYxVpzkucftq7i.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/aQoyAUmF5BNGd9e.png">
+<meta property="og:image" content="https://s2.loli.net/2021/12/28/Fhlj9nQPTGgSabR.png">
+<meta property="article:published_time" content="2021-12-28T02:27:50.000Z">
+<meta property="article:modified_time" content="2021-12-28T07:23:07.403Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="代码审计">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2021/12/28/rhX6mJ2vtUOlR71.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -69,9 +105,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-java代码审计复现之ofcms" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-java代码审计复现之ofcms" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/12/28/java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%A4%8D%E7%8E%B0%E4%B9%8Bofcms/" class="article-date">
   <time class="dt-published" datetime="2021-12-28T02:27:50.000Z" itemprop="datePublished">2021-12-28</time>
@@ -84,8 +118,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/12/28/java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%A4%8D%E7%8E%B0%E4%B9%8Bofcms/">java代码审计复现之ofcms</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      java代码审计复现之ofcms
     </h1>
   
 
@@ -150,11 +184,9 @@
     </footer>
   </div>
   
-</article>
-
-
-
+    
   
+</article>
 
 
 </section>
